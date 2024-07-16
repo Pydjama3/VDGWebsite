@@ -1,0 +1,86 @@
+:root {
+  --main-bg-color: #faf0eb;
+  --second-bg-color: #332b24;
+  --main-font-color: #332b24;
+  --second--font-color: #07488f;
+  --accidental-font-color: #ff7538;
+  --accidental-style-color: #ffc7c0;
+}
+
+body, html {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  color: var(--accidental-font-color);
+  font-size: 40px;
+}
+
+h2 {
+  color: var(--second--font-color);
+  font-size: 30px;
+}
+
+p {
+  color: var(--main-font-color);
+  font-size: 20px;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(var(--main-bg-color));
+  background: rgba(from var(--main-bg-color) r g b / 60%);
+  color: #43b1b0;
+  /* filter: opacity(60%); */
+}
+
+.navigation_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+}
+
+.navigation_bar_dest {
+  float: right;
+}
+
+.navigation_bar_dest a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navigation_bar_dest a:not(.current) {
+  color: var(--second--font-color);
+}
+
+.navigation_bar.current {
+  color: var(--accidental-font-color);
+}
+
+/* Change the link color to #111 (black) on hover */
+.navigation_bar_dest a:hover:not(.current) {
+  background-color: var(--accidental-font-color);
+}
+
+.navigation_bar a.current:hover {
+  background-color: var(--second--font-color);
+}
