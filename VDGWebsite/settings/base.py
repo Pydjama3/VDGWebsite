@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# Heroku setup
+IS_HEROKU_APP = "DYNO" in os.environ and "CI" not in os.environ
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -82,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "VDGWebsite.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -91,8 +93,14 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
+} if IS_HEROKU_APP else {
+    "default": dj_database_url.config(
+        env="DATABASE_URL",
+        conn_max_age=600,
+        conn_health_checks=True,
+        ssl_require=True,
+    ),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -112,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -123,7 +130,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -157,7 +163,6 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
     },
 }
-
 
 # Wagtail settings
 
