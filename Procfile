@@ -1,1 +1,1 @@
-web: gunicorn VDGWebsite.wsgi
+web: gunicorn VDGWebsite.wsgi:application
