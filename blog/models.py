@@ -21,6 +21,9 @@ class BlogIndexPage(Page):
         FieldPanel('intro')
     ]
 
+    parent_page_types = []
+    subpage_types = ['blog.BlogPage']
+
 
 class BlogPage(Page):
     date = models.DateField("Post date")
@@ -46,6 +49,9 @@ class BlogPage(Page):
 
         InlinePanel('gallery_images', label="Gallery images"),
     ]
+
+    parent_page_types = ['blog.BlogIndexPage']
+    subpage_types = []
 
 
 class BlogPageGalleryImage(Orderable):

@@ -4,35 +4,41 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-    <ul class="navigation_bar">
-    {% for page in self.get_children.specific %}
-        <li {% if request.resolver_match.url_name == page.slug %} class="navigation_bar_dest curent" {% else %} class="navigation_bar_dest" {% endif %}>
-            <a href="http://localhost:8000/{{ page.slug }}">{{ page.title }}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    {% comment %}<div class="logo">
+        <img src="/static/img/logo.jpg">
+    </div>
+    <div>
+        <ul class="navigation_bar">
+        {% for page in self.get_children.specific %}
+            <li {% if request.resolver_match.url_name == page.slug %} class="navigation_bar_dest curent" {% else %} class="navigation_bar_dest" {% endif %}>
+                <a href="http://localhost:8000/{{ page.slug }}">{{ page.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
     <div class="hero">
-        {% image page.image min %}
+        {% image page.image max-1024x1080 as img %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" style="{{ img.background_position_style }}">
+{#        <img#}
+{#            src="{{ img.url }}"#}
+{#            alt="{{ img.alt }}"#}
+{#            {% if img.focal_point %}#}
+{#                data-focus-x="{{ img.focal_point.centroid.x }}"#}
+{#                data-focus-y="{{ img.focal_point.centroid.y }}"#}
+{#                data-focus-width="{{ img.focal_point.width }}"#}
+{#                data-focus-height="{{ img.focal_point.height }}"#}
+{#            {% endif %}#}
+{#        />#}
         <div class="hero-text">
             <h1>{{ page.title }}</h1>
             <p>{{ page.hero_text }}</p>
-            {% if page.hero_cta_link %}
-            <a href="{% pageurl page.hero_cta_link %}">
-                {% firstof page.hero_cta page.hero_cta_link.title %}
-            </a>
-            {% endif %}
         </div>
+    </div>{% endcomment %}
+    <div class="content-body">
+        <div class="content">
+            {{ page.body|richtext }}
+        </div>
+{#        {% wagtail_site as current_site %}#}
+{#        {{ current_site.root_page. }}#}
     </div>
-{#    <div>#}
-{#        <h1></h1>#}
-{#        {% image page.image fill-480x320 %}#}
-{#        <p>{{ page.hero_text }}</p>#}
-{#        {% if page.hero_cta_link %}#}
-{#            <a href="{% pageurl page.hero_cta_link %}">#}
-{#                {% firstof page.hero_cta page.hero_cta_link.title %}#}
-{#            </a>#}
-{#        {% endif %}#}
-{#    </div>#}
-
-  {{ page.body|richtext }}
 {% endblock content %}

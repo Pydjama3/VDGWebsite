@@ -10,21 +10,64 @@
 body, html {
   height: 100%;
   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  justify-content: center;
+}
+
+body::before {
+  background-color: var(--main-bg-color);
+  background-image: url(./../img/istockphoto-1041266542-612x612.jpg#);
+  background-size: 50%;
+  background-repeat: repeat round;
+  filter: blur(10px);
 }
 
 h1 {
-  color: var(--accidental-font-color);
+  color: var(--second--font-color);
   font-size: 40px;
+  text-align: center;
 }
 
 h2 {
+  color: var(--accidental-font-color);
+  font-size: 40px;
+  text-align: center;
+}
+
+h3, h4 {
   color: var(--second--font-color);
+}
+
+h3 {
   font-size: 30px;
+}
+
+h4 {
+  font-size: 25px;
 }
 
 p {
   color: var(--main-font-color);
   font-size: 20px;
+}
+
+/*a {*/
+/*  color: var(--accidental-style-color);*/
+/*}*/
+
+.logo {
+  position: absolute;
+  z-index: 1;
+  transform: translate(10px, 10px);
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
 }
 
 .hero img {
@@ -44,9 +87,8 @@ p {
   width: 50%;
   transform: translate(-50%, -50%);
   background: rgb(var(--main-bg-color));
-  background: rgba(from var(--main-bg-color) r g b / 60%);
+  background: rgba(from var(--main-bg-color) r g b / 70%);
   color: #43b1b0;
-  /* filter: opacity(60%); */
 }
 
 .navigation_bar {
@@ -72,15 +114,29 @@ p {
   color: var(--second--font-color);
 }
 
-.navigation_bar.current {
+.navigation_bar .current a {
   color: var(--accidental-font-color);
 }
 
 /* Change the link color to #111 (black) on hover */
-.navigation_bar_dest a:hover:not(.current) {
+.navigation_bar_dest:hover:not(.current) {
   background-color: var(--accidental-font-color);
 }
 
-.navigation_bar a.current:hover {
+.navigation_bar .current:hover {
   background-color: var(--second--font-color);
 }
+
+.content-body {
+  margin: 0 10% 0 10%;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  /*background-color: color-mix(in srgb, var(--second-bg-color), white 70%);*/
+  background-color: var(--main-bg-color);
+}
+
+.content-body .content {
+  margin: 10% 10% 10% 10%;
+}
+

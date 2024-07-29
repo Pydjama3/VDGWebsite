@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar wagtailimages_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +23,8 @@
         <base target="_blank">
         {% endif %}
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
         {# Global stylesheets #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +39,39 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-
+        <a href="/" class="logo">
+            <img src="{% static "img/logo.jpg" %}">
+        </a>
+        <div>
+            <ul class="navigation_bar">
+            {% wagtail_site as current_site %}
+            {% for page in current_site.root_page.get_children.specific %}
+                <li {% if self.url_path == page.url_path %} class="navigation_bar_dest current" {% else %} class="navigation_bar_dest" {% endif %}>
+                    <a href="{% pageurl page %}">{{ page.title }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% if page.main_img %}
+            <div class="hero">
+                {% image page.main_img max-1024x1080 as img %}
+                <img src="{{ img.url }}" alt="{{ img.alt }}" style="{{ img.background_position_style }}">
+        {#        <img#}
+        {#            src="{{ img.url }}"#}
+        {#            alt="{{ img.alt }}"#}
+        {#            {% if img.focal_point %}#}
+        {#                data-focus-x="{{ img.focal_point.centroid.x }}"#}
+        {#                data-focus-y="{{ img.focal_point.centroid.y }}"#}
+        {#                data-focus-width="{{ img.focal_point.width }}"#}
+        {#                data-focus-height="{{ img.focal_point.height }}"#}
+        {#            {% endif %}#}
+        {#        />#}
+                <div class="hero-text">
+                    <h1>{{ page.title }}</h1>
+                    <p>{{ page.subtitle }}</p>
+                </div>
+            </div>
+        {% endif %}
         {% block content %}{% endblock %}
 
         {# Global javascript #}
