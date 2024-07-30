@@ -20,7 +20,7 @@ body {
 
 body::before {
   background-color: var(--main-bg-color);
-  background-image: url(./../img/istockphoto-1041266542-612x612.jpg#);
+  /*background-image: url(./../img/istockphoto-1041266542-612x612.jpg);*/
   background-size: 50%;
   background-repeat: repeat round;
   filter: blur(10px);
