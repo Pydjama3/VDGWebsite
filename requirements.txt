@@ -3,3 +3,4 @@ wagtail>=6.1,<6.2
 gunicorn
 dj-database-url
 whitenoise
+sycopg2-binary
