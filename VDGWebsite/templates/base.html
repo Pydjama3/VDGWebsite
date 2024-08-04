@@ -37,7 +37,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}" style="background-image: {% static "img/istockphoto-1041266542-612x612.jpg" %}">
+    <body class="{% block body_class %}{% endblock %}" style="background-image: url({% static "img/istockphoto-1041266542-612x612.jpg" %})">
         {% wagtailuserbar %}
         <a href="/" class="logo">
             <img src="{% static "img/logo.jpg" %}">
@@ -56,16 +56,6 @@
             <div class="hero">
                 {% image page.main_img max-1024x1080 as img %}
                 <img src="{{ img.url }}" alt="{{ img.alt }}" style="{{ img.background_position_style }}">
-        {#        <img#}
-        {#            src="{{ img.url }}"#}
-        {#            alt="{{ img.alt }}"#}
-        {#            {% if img.focal_point %}#}
-        {#                data-focus-x="{{ img.focal_point.centroid.x }}"#}
-        {#                data-focus-y="{{ img.focal_point.centroid.y }}"#}
-        {#                data-focus-width="{{ img.focal_point.width }}"#}
-        {#                data-focus-height="{{ img.focal_point.height }}"#}
-        {#            {% endif %}#}
-        {#        />#}
                 <div class="hero-text">
                     <h1>{{ page.title }}</h1>
                     <p>{{ page.subtitle }}</p>
